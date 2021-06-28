@@ -2,7 +2,6 @@
 
 A project for building out a home lab or start-up.
 
-
 ## LICENSE
 
 Copyright (c) 2012 - 2021 Michael Herndon, Nerdy Mishka
