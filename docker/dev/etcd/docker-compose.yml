@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+    nm-etcd-0:
+      image: quay.io/coreos/etcd
+      container_name: "nm-etcd-dev"
+      networks:
+        config-plane:
+          ipv4_address: 172.2.0.5
+      volumes:
+        - ${DOCKER_DATA}/etcd-dev:/etcd_data
+      ports:
+        - "2378:2379"
+        - "4001:4001"
+      command: 
+        - /usr/local/bin/etcd
+        - -name
+        - etcd-dev
+        - --data-dir
+        - /etcd_data
+        - -advertise-client-urls
+        - http://etcd0:2378
+        - -listen-client-urls
+        - http://0.0.0.0:2379
+        - -initial-advertise-peer-urls
+        - http://172.2.0.5:2380
+        - -listen-peer-urls
+        - http://172.2.0.5:2380
+        - -initial-cluster
+        - etcd-dev=http://172.2.0.5:2380
+networks:
+  config-plane:
+    external:
+        name: nm-config-plane-vnet

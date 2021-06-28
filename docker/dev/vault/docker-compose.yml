@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+
+  vault-server:
+    image: vault:latest
+    container_name: "nm-vault-n0"
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_LOCAL_CONFIG: >-
+        {
+            "api_addr": "http://127.0.0.1:8200"
+            "ui": true,
+            "disable_mlock": true,
+            "backend": {
+                "file": {
+                    "path": "/vault/data"
+                }
+            },
+            "default_lease_ttl": "168h",
+            "listener": {
+                "tcp": {
+                    "address": "0.0.0.0:8200",
+                    "tls_disable": "1"
+                }
+            },
+            "max_lease_ttl": "720h"
+        }
+    cap_add:
+      - IPC_LOCK
+
+    volumes:
+      - ${DOCKER_LOG}/vault-n0:/vault/log
+      - ${DOCKER_ETC}/vault-n0:/vault/config
+      - ${DOCKER_DATA}/vault-n0/policies:/vault/policies
+      - ${DOCKER_DATA}/vault-n0/data:/vault/data
+    networks:
+      config-plane:
+        ipv4_address: 172.2.0.6
+        aliases:
+          - vault
+
+networks:
+  config-plane:
+    external:
+        name: nm-config-plane-vnet
