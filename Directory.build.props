@@ -13,6 +13,7 @@
     <DotNetAppFrameworks>net6.0</DotNetAppFrameworks>
     <DotNetTestFrameworks>net6.0</DotNetTestFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
     <RunAnalyzersDuringLiveAnalysis Condition="'$(Configuration)' == 'Release'">false</RunAnalyzersDuringLiveAnalysis>
     <!-- <ReportAnalyzer>true</ReportAnalyzer> -->
   </PropertyGroup>

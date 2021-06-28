@@ -2,6 +2,10 @@
     "cSpell.words": [
         "Mishka",
         "herndon",
-        "mishka"
-    ]
+        "mishka",
+        "xunit"
+    ],
+    "editor.rulers": [80, 120],
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.enableImportCompletion": true
 }
