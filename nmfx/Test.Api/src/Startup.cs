@@ -18,7 +18,7 @@ namespace Test.Api
     {
         public Startup(IConfiguration configuration)
         {
-            this.ConfigurationConfiguration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -26,12 +26,9 @@ namespace Test.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test.Api", Version = "v1" });
-            });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test.Api", Version = "v1" }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,10 +47,7 @@ namespace Test.Api
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
